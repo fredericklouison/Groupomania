@@ -1,0 +1,6 @@
+img#fond{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    position: absolute;
+}

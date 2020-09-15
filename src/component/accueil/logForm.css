@@ -1,0 +1,27 @@
+div#LogForm{
+    width: 30%;
+    height:100%;
+    position: relative;
+    position: fixed;
+    background-color: rgba(119, 136, 153, 0.664) ;
+}
+label{
+    color: white;
+}
+h2{
+    text-align: center;
+    color: white;
+}
+#btnConnect{
+    float: right;
+    margin-right: 45px;
+    margin-top: 40px;
+    width: 200px;
+}
+html { overflow-y: hidden; }
+form a{
+    color: darkblue;
+}
+form a:hover{
+    color: black;
+}

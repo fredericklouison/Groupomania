@@ -1,0 +1,22 @@
+div#LogInForm{
+    width: 30%;
+    height:800px;
+    position: relative;
+    
+    float: right;
+    background-color: rgba(211, 74, 20, 0.788) ;
+}
+label{
+    color: white;
+}
+h2{
+    text-align: center;
+    color: white;
+}
+#btnConnect{
+    float: right;
+    margin-right: 45px;
+    margin-top: 40px;
+    width: 200px;
+}
+html { overflow-y: hidden; }
