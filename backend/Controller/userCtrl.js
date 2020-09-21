@@ -8,6 +8,7 @@ const jwt=require('jsonwebtoken')
 exports.createUser=(req,res,next)=>{
     const userObject=req.body
     const password=req.body.password
+    
     try {
         let regex=/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(password);
         if(regex){
@@ -19,7 +20,7 @@ exports.createUser=(req,res,next)=>{
             });
             sql.query(`INSERT INTO users( email,password,nom, prenom,IsAdmin) VALUES ('${Users.email}','${Users.password}','${Users.nom }','${Users.prenom}',${Users.IsAdmin})`)
             .then(() =>res.status(200).json({message:'utilisateur créer!',user:Users}))
-            .catch(error=>res.status(400).json({error}))
+            .catch(error=>res.status(402).json({error}))
           })
           .catch(error => res.status(503).json({ error }));
           
@@ -28,7 +29,7 @@ exports.createUser=(req,res,next)=>{
       } 
         
       } catch (error) {
-         res.status(400).json({error:error})
+         res.status(401).json({error:'le mot de passe doit contenir au moins 8 caractère , une minuscule ,une majuscule et un chifre ou un caractère spécial'})
       }
                                 
     

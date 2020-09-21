@@ -23,8 +23,9 @@ class Accueil extends Component {
         e.preventDefault()
         this.setState({whatForm:false});
       }  
+      
     render () {
-       
+        
         return (
             <Fragment>
                 <Header />

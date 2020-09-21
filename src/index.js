@@ -1,20 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
-import{ BrowserRouter, Route , Switch} from'react-router-dom'
 import * as serviceWorker from './serviceWorker';
-import Accueil from './component/accueil/accueil';
-import UserInterface from './component/userInterface/userInterface';
+import Store from './store'
+
 const Root = () => {
   return (
-      <BrowserRouter>
-          <Switch>
-              <Route exact path='/' component={Accueil}></Route>
-              <Route exact path='/interface/' component={UserInterface}></Route>
-          </Switch>
-      </BrowserRouter>
+      <Store />
   )
 }
 ReactDOM.render(
