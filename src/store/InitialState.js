@@ -1,5 +1,6 @@
  const InitialState = {
     loading:false,
-    error:''
+    error:'',
+    IsAuthenticated:false
 }
 export default InitialState

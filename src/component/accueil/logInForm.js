@@ -1,13 +1,16 @@
 import React ,{ useState }from 'react'
 import './logInForm.css'
 import {connect} from 'react-redux'
-import {fetchUserSignup} from '../../store/action/userAction'
+import {fetchUserSignup,setCurrentUser} from '../../store/action/userAction'
+import Auth from '../../auth.service'
+import { useHistory } from "react-router-dom";
 
-const LogInForm = ({fetchUserSignup,textclick,loading,user}) => {
+const LogInForm = ({fetchUserSignup,setCurrentUser,textclick,loading,user}) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const [nom, setenom] = useState('')
     const [prenom, setprenom] = useState('')
+    const history = useHistory();
     
     const emailChange=e=>{setemail(e.target.value)
       }
@@ -28,7 +31,11 @@ const LogInForm = ({fetchUserSignup,textclick,loading,user}) => {
             prenom,
             IsAdmin:0
         }
-        fetchUserSignup(body)
+        Auth.sigin(()=>{
+            fetchUserSignup(body)
+            setCurrentUser()
+            history.push('/interface')
+        },body)
         setemail("")
         setpassword("")
         setenom("")
@@ -55,16 +62,18 @@ const LogInForm = ({fetchUserSignup,textclick,loading,user}) => {
         </div>
     )
 }
-const mapStateToProps=({loading,error,user})=>{
+const mapStateToProps=({loading,error,user,IsAuthenticated})=>{
     return{
         loading,
         error,
-        user
+        user,
+        IsAuthenticated
     }
 }
 const mapDispatchToProps=(dispatch)=>{
     return{
-        fetchUserSignup:(body)=>dispatch(fetchUserSignup(body))
+        fetchUserSignup:(body)=>dispatch(fetchUserSignup(body)),
+        setCurrentUser:()=>{dispatch(setCurrentUser())}
     }
 }
 
