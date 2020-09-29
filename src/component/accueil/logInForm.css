@@ -1,9 +1,9 @@
 div#LogInForm{
     width: 30%;
-    height:800px;
+    height:750px;
     position: relative;
-    
-    float: right;
+    position: fixed;
+    right: 0px;
     background-color: rgba(211, 74, 20, 0.788) ;
 }
 label{
@@ -19,4 +19,3 @@ h2{
     margin-top: 40px;
     width: 200px;
 }
-html { overflow-y: hidden; }

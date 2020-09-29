@@ -1,11 +1,12 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import{ Route,Redirect} from'react-router-dom'
+import {setCurrentUser} from './store/action/userAction'
 import Auth from './auth.service'
 import {connect} from 'react-redux'
 
 
-const ProtectedRoutes = ({component:Component,IsAuthenticated,currentuser,...rest}) => {
-    if(Auth.IsAuthenticated(IsAuthenticated)&&currentuser!==undefined){
+const ProtectedRoutes = ({component:Component,IsAuthenticated,currentuser,Pathname,...rest}) => {
+    if(Auth.IsAuthenticated(IsAuthenticated)&&currentuser!==(''||undefined)){
         return (
             <Route {...rest} component={
                 Component 
@@ -15,7 +16,7 @@ const ProtectedRoutes = ({component:Component,IsAuthenticated,currentuser,...res
         return(
             <Redirect to={
                 {
-                    pathname:'/'
+                    pathname:Pathname
                     
                 }
             }/>
@@ -23,10 +24,10 @@ const ProtectedRoutes = ({component:Component,IsAuthenticated,currentuser,...res
     }
     
 }
-const mapStateToProps=({currentuser,IsAuthenticated})=>{
+const mapStateToProps=({userReducer})=>{
     return{
-       currentuser,
-       IsAuthenticated
+        currentuser:userReducer.currentuser,
+       IsAuthenticated:userReducer.IsAuthenticated
     }
 }
 

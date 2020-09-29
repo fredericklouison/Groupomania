@@ -7,9 +7,10 @@ import UserInterface from './component/userInterface/userInterface';
 import ProtectedRoutes from './protectedRoutes'
 
 import ProtectedHome from './protectedHome';
+import Forum from './component/forum/forum';
 
 
-const App =({currentuser,IsAuthenticated,setCurrentUser})=> {
+const App =({currentuser,IsAuthenticated,userReducer,setCurrentUser})=> {
     useEffect(()=>{
         setCurrentUser()
     },[setCurrentUser])
@@ -17,17 +18,20 @@ const App =({currentuser,IsAuthenticated,setCurrentUser})=> {
             <BrowserRouter>
                 <Switch>
                     <ProtectedHome exact path='/' component={Accueil}></ProtectedHome>
-                    <ProtectedRoutes exact path='/interface/' component={UserInterface}></ProtectedRoutes>
+                    <ProtectedRoutes exact path='/Forum' component={Forum} Pathname='/Forum'></ProtectedRoutes>
+                    <ProtectedRoutes exact path='/interface' component={UserInterface} Pathname='/interface'></ProtectedRoutes>
+                    
                 </Switch>
             </BrowserRouter>
         )
     
 }
-const mapStateToProps=({currentuser,IsAuthenticated,error})=>{
+const mapStateToProps=({userReducer,postReducer})=>{
     return{
-       currentuser,
-       IsAuthenticated,
-       error
+       currentuser:userReducer.currentuser,
+       IsAuthenticated:userReducer.IsAuthenticated,
+       error:userReducer.error,
+       postReducer
     }
 }
 const mapDispathToProps=(dispatch)=>{

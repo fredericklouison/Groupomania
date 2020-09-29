@@ -1,12 +1,19 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import Button from 'react-bootstrap/Button'
 import React, { Fragment } from 'react'
+import {connect} from 'react-redux'
+import {userLogout} from '../../store/action/userAction'
 import './header.css'
 import Menu from './menu'
 const  logo = require('../../images/logo.png')
 
 
-const Header = (props) => {
+const Header = ({userLogout,menu}) => {
+    const handleClick=()=>{
+        userLogout()
+        localStorage.removeItem('token')
+    }
     return (
         
            <Fragment>
@@ -15,7 +22,10 @@ const Header = (props) => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        {props.menu?<Menu />:null}
+                        {menu?<Menu />:null}
+                    </Nav>
+                    <Nav className="mr-auto">
+                        {menu?<Button id='deconexion'variant="danger"onClick={handleClick}>Deconnexion</Button>:null}
                     </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -24,4 +34,9 @@ const Header = (props) => {
     )
 }
 
-export default Header
+const mapDispathToProps=(dispatch)=>{
+    return({
+        userLogout:()=>{dispatch(userLogout())}
+    })
+}
+export default connect(null,mapDispathToProps)(Header)

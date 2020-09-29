@@ -3,12 +3,15 @@ const Post=require('../model/postModel')
 const fs =require('fs')
 
 exports.CreatePost=(req,res,next)=>{
-    const postObject=req.body
+    const postObject=JSON.parse(req.body.post)
+    console.log(postObject)
+    console.log(req.file)
     const post= new Post({
         ...postObject,
        photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     })
-   sql.query(`INSERT INTO Post ( photo,likes,Dislikes, usersid) VALUES ('${post.photo}',0,0, '${post.userid}')`)
+    console.log(post.titre)
+   sql.query(`INSERT INTO Post ( photo,titre,usersid, photo_user,pseudo) VALUES ('${post.photo}','${post.titre}','${post.userid}', '${post.photo_user}','${post.pseudo}')`)
    .then(()=>{
        res.status(200).json({post:'Post créer'})
    })
@@ -37,13 +40,13 @@ exports.getOnePost=(req,res,next)=>{
  }
  exports.UpdatePost=(req,res,next)=>{
     const id=req.params.id
-    const postObject=req.body
+    const postObject=JSON.parse(req.body.post)
     const post=req.file ?
     {
         ...postObject,
         photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    }:{ ...req.body };
-   sql.query(`UPDATE Post SET photo='${req.body.photo}',likes=0,Dislikes=0 WHERE idPost=${id}`)
+    }:{ ...postObject };
+   sql.query(`UPDATE Post SET photo='${post.photo}', titre='${post.titre}',likes=0,Dislikes=0 WHERE idPost=${id}`)
    .then(()=>{
        res.status(200).json({post:'post modifier'})
    })

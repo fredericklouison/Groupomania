@@ -10,6 +10,9 @@ const User= sequelize.define('User',{
     password: {
         type: Sequelize.STRING
     },
+    pseudo:{
+        type: Sequelize.STRING
+    },
     nom:{
         type: Sequelize.STRING
     },

@@ -1,0 +1,47 @@
+#postdownload{
+    width: 500px;
+    height: 500px;
+    border: 1px solid purple;
+    display: flex;
+    margin: 20px auto;
+    border-radius: 5%;
+    overflow: hidden;
+}
+#postimg{
+    width: 400px;
+}
+#userwrap{
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#profiluser{
+    width: 50px;
+    height: 100%;
+    border-radius: 50%;
+}
+#userwrap p{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#postwrap h3{
+    text-align: center;
+}
+#postwrap img{
+    max-height: 350px;
+    max-width: 100%;
+    margin: auto;
+}
+#postbtn i.fas{
+    font-size: 22px;
+    margin-top: 25px;
+    cursor:pointer;
+   
+}
+div#postbtn i.like:first-child{
+    margin-top: 50px;
+}
+div#postbtn{
+    width: 50px;
+    margin: 0px auto;
+}

@@ -5,11 +5,11 @@ import {connect} from 'react-redux'
 
 
 const ProtectedHome = ({component:Component,IsAuthenticated,currentuser,...rest}) => {
-    if(Auth.IsAuthenticated(IsAuthenticated)&&currentuser!=undefined){
+    if(Auth.IsAuthenticated(IsAuthenticated)&&currentuser!=(''||undefined)){
         return(
             <Redirect to={
                 {
-                    pathname:'/interface'
+                    pathname:'/forum'
                     
                 }
             }/>
@@ -24,10 +24,10 @@ const ProtectedHome = ({component:Component,IsAuthenticated,currentuser,...rest}
     }
     
 }
-const mapStateToProps=({currentuser,IsAuthenticated})=>{
+const mapStateToProps=({userReducer})=>{
     return{
-       currentuser,
-       IsAuthenticated
+        currentuser:userReducer.currentuser,
+       IsAuthenticated:userReducer.IsAuthenticated
     }
 }
 

@@ -1,0 +1,11 @@
+#photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border-color:1px solid red;
+    
+}
+#photo-content{
+    width: 150px;
+    margin: auto;
+}

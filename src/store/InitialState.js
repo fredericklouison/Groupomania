@@ -1,6 +1,8 @@
  const InitialState = {
     loading:false,
     error:'',
-    IsAuthenticated:false
+    IsAuthenticated:false,
+    currentuser:'',
+    user:''
 }
 export default InitialState

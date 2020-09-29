@@ -2,7 +2,6 @@ import React ,{ useState }from 'react'
 import './logInForm.css'
 import {connect} from 'react-redux'
 import {fetchUserSignup,setCurrentUser} from '../../store/action/userAction'
-import Auth from '../../auth.service'
 import { useHistory } from "react-router-dom";
 
 const LogInForm = ({fetchUserSignup,setCurrentUser,textclick,loading,user}) => {
@@ -10,6 +9,7 @@ const LogInForm = ({fetchUserSignup,setCurrentUser,textclick,loading,user}) => {
     const [password, setpassword] = useState('')
     const [nom, setenom] = useState('')
     const [prenom, setprenom] = useState('')
+    const [pseudo, setpseudo] = useState('')
     const history = useHistory();
     
     const emailChange=e=>{setemail(e.target.value)
@@ -21,25 +21,34 @@ const LogInForm = ({fetchUserSignup,setCurrentUser,textclick,loading,user}) => {
         }
     const prenomChange=e=>{setprenom(e.target.value)
        }
+
+    const pseudoChange=e=>{setpseudo(e.target.value)
+       }
     
     const handleClick=(e)=>{
         e.preventDefault()
+        
         const body={
-            email,
-            password,
-            nom,
-            prenom,
-            IsAdmin:0
+            "email":email,
+            "password":password,
+            "pseudo":pseudo,
+            "nom":nom,
+            "prenom":prenom,
+            "IsAdmin":0
         }
-        Auth.sigin(()=>{
-            fetchUserSignup(body)
-            setCurrentUser()
-            history.push('/interface')
-        },body)
+        const request ={
+            body
+           
+        }
+        console.log( body)
+        console.log(request)
+        fetchUserSignup(request)
+        setCurrentUser()
         setemail("")
         setpassword("")
         setenom("")
         setprenom('')
+  
         
     }
     
@@ -52,6 +61,8 @@ const LogInForm = ({fetchUserSignup,setCurrentUser,textclick,loading,user}) => {
                <br />
                <label>Password :</label>
                <input type="password"name='password' className="form-control"value={password} onChange={passwordChange} id="inputPassword"/>
+               <br/>
+               <input type="text" className="form-control col"name='pseudo' placeholder="Pseudo"value={pseudo} onChange={pseudoChange} />
                <br />
                <input type="text" className="form-control col"name='nom' placeholder="Nom"value={nom} onChange={nomChange} />
                <br />
@@ -62,12 +73,13 @@ const LogInForm = ({fetchUserSignup,setCurrentUser,textclick,loading,user}) => {
         </div>
     )
 }
-const mapStateToProps=({loading,error,user,IsAuthenticated})=>{
+const mapStateToProps=({userReducer})=>{
     return{
-        loading,
-        error,
-        user,
-        IsAuthenticated
+        loading:userReducer.loading,
+        error:userReducer.error,
+        user:userReducer.user,
+        IsAuthenticated:userReducer.IsAuthenticated,
+        currentuser:userReducer.currentuser
     }
 }
 const mapDispatchToProps=(dispatch)=>{

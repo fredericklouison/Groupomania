@@ -12,7 +12,10 @@ const Comment= sequelize.define('Comment',{
     userid:{
         type: Sequelize.INTEGER,
         allowNull:false
-    }
+    },
+    pseudo:{
+        type: Sequelize.STRING
+    },
 
   })
   module.exports=Comment

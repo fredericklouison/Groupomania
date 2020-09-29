@@ -2,19 +2,22 @@ const { Sequelize } = require('sequelize');
 const sequelize=require('../db')
 
 const Post= sequelize.define('Post',{
-    Photo:{
+    photo:{
         type: Sequelize.STRING,
         allowNull:false
     },
-    Dislikes:{
-        type: Sequelize.INTEGER
-    },
-    likes:{
-        type: Sequelize.INTEGER
+    titre:{
+        type: Sequelize.STRING
     },
     userid:{
         type: Sequelize.INTEGER,
         allowNull:false
+    },
+    photo_user:{
+        type: Sequelize.STRING
+    },
+    pseudo:{
+        type: Sequelize.STRING
     }
 
   })

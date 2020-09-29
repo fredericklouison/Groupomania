@@ -2,9 +2,8 @@ import jwt_decode from "jwt-decode";
 
 
 class Auth {
-    sigin=(cb)=>{
-        localStorage.setItem('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1Njc4OTAiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.HmDv473KGFNJtOzpnav8vSwqUycNJTE3iOTvaIm7LnM")
-       cb()
+    sigin=(token)=>{
+        localStorage.setItem('token',token)
     }
     logout=(cb)=>{
         localStorage.removeItem('token')
