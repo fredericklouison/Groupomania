@@ -36,12 +36,50 @@
     font-size: 22px;
     margin-top: 25px;
     cursor:pointer;
+    
    
 }
 div#postbtn i.like:first-child{
     margin-top: 50px;
+    
 }
 div#postbtn{
     width: 50px;
     margin: 0px auto;
 }
+div#postbtn i.userlike{
+    color: rgb(6, 206, 6);
+    
+}
+div#postbtn i.userdislike{
+    color: red;
+    
+}
+#comment{
+    height: 250px;
+    width: 500px;
+    border: 1px solid purple;
+    margin: auto;
+    
+}
+#comment #content{
+    height: 210px;
+    overflow-y: scroll;
+    
+}
+#comment #inputpost{
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+}
+.com{
+    padding: 20px;
+    width: 100%;
+    border-radius: 25px;
+    background-color: rgba(190, 189, 189, 0.212);
+    margin-top: 20px;
+    
+}
+#del{
+    position: relative;
+   margin-left: 95%;}

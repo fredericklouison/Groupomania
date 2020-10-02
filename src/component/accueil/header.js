@@ -13,6 +13,7 @@ const Header = ({userLogout,menu}) => {
     const handleClick=()=>{
         userLogout()
         localStorage.removeItem('token')
+        window.location.replace("http://localhost:3000/")
     }
     return (
         

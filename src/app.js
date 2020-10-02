@@ -17,10 +17,9 @@ const App =({currentuser,IsAuthenticated,userReducer,setCurrentUser})=> {
         return (
             <BrowserRouter>
                 <Switch>
-                    <ProtectedHome exact path='/' component={Accueil}></ProtectedHome>
-                    <ProtectedRoutes exact path='/Forum' component={Forum} Pathname='/Forum'></ProtectedRoutes>
+                    <ProtectedHome exact path='/' component={Accueil}Pathname='/Forum'></ProtectedHome>
+                    <ProtectedRoutes exact path='/Forum' component={Forum} Pathname='/'></ProtectedRoutes>
                     <ProtectedRoutes exact path='/interface' component={UserInterface} Pathname='/interface'></ProtectedRoutes>
-                    
                 </Switch>
             </BrowserRouter>
         )

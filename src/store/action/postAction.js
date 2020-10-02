@@ -20,6 +20,7 @@ export const fetchCreatePost=(body)=>{
 		const formData = new FormData();
 		formData.append('post',JSON.stringify(body.body));
 		formData.append('image', body.photo);
+		
 		return fetch(
 			`${APIConfig.API_URI}/Post/create`,
 			{
@@ -134,3 +135,128 @@ export const fetchupdateOnePost=(body,idPost)=>{
 			})
 	}
 }
+export const deleteOnePost=()=>({
+    type:Types.DELETE_ONE_POST,
+    loading:true
+})
+export const deleteOnePostSuccess=(post)=>({
+    type:Types.DELETE_ONE_POST_SUCCESS,
+    loading:false
+})
+export const deleteOnePostError=(error)=>({
+    type:Types.DELETE_ONE_POST_ERROR,
+    loading:false,
+    error
+})
+export const fetchdeleteOnePost=(idPost)=>{
+	console.log(idPost)
+    return (dispatch) => {
+		dispatch(deleteOnePost())
+		return fetch(
+			`${APIConfig.API_URI}/Post/`+idPost,
+			{
+                method: 'DELETE'
+                
+			}
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error('Error - 404 Not Found')
+				}
+				return response.json()
+			})
+			.then((post) => {
+				dispatch(deleteOnePostSuccess(post))
+				window.location.reload()
+			})
+			.catch((error) => {
+				console.log(error)
+				dispatch(deleteOnePostError(error))
+			})
+	}
+}
+export const likeOnePost=()=>({
+    type:Types.LIKE_ONE_POST,
+    loading:true
+})
+export const likeOnePostSuccess=(like)=>({
+    type:Types.LIKE_ONE_POST_SUCCESS,
+	loading:false,
+	like
+})
+export const likeOnePostError=(error)=>({
+    type:Types.LIKE_ONE_POST_ERROR,
+    loading:false,
+    error
+})
+
+export const fetchlikeOnePost=(idPost,iduser)=>{
+	console.log(idPost)
+    return (dispatch) => {
+		dispatch(likeOnePost())
+		return fetch(
+			`${APIConfig.API_URI}/Post/like/${idPost}/${iduser}`,
+			{
+                method: 'GET'
+                
+			}
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error('Error - 404 Not Found')
+				}
+				return response.json()
+			})
+			.then((like) => {
+				dispatch(likeOnePostSuccess(like))
+				window.location.reload()
+			})
+			.catch((error) => {
+				console.log(error)
+				dispatch(likeOnePostError(error))
+			})
+	}
+}
+export const dislikeOnePost=()=>({
+    type:Types.DISLIKE_ONE_POST,
+    loading:true
+})
+export const dislikeOnePostSuccess=(dislike)=>({
+    type:Types.DISLIKE_ONE_POST_SUCCESS,
+	loading:false,
+	dislike
+})
+export const dislikeOnePostError=(error)=>({
+    type:Types.DISLIKE_ONE_POST_ERROR,
+    loading:false,
+    error
+})
+
+export const fetchdislikeOnePost=(idPost,iduser)=>{
+	console.log(idPost)
+    return (dispatch) => {
+		dispatch(dislikeOnePost())
+		return fetch(
+			`${APIConfig.API_URI}/Post/dislike/${idPost}/${iduser}`,
+			{
+                method: 'GET'
+                
+			}
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error('Error - 404 Not Found')
+				}
+				return response.json()
+			})
+			.then((dislike) => {
+				dispatch(dislikeOnePostSuccess(dislike))
+				window.location.reload()
+			})
+			.catch((error) => {
+				console.log(error)
+				dispatch(dislikeOnePostError(error))
+			})
+	}
+}
+

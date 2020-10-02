@@ -8,6 +8,7 @@ class Auth {
     logout=(cb)=>{
         localStorage.removeItem('token')
         cb() 
+        
     }
     currentuserSet=()=>{
         const token=localStorage.getItem('token')

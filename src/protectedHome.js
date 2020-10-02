@@ -4,12 +4,12 @@ import Auth from './auth.service'
 import {connect} from 'react-redux'
 
 
-const ProtectedHome = ({component:Component,IsAuthenticated,currentuser,...rest}) => {
+const ProtectedHome = ({component:Component,IsAuthenticated,currentuser,Pathname,...rest}) => {
     if(Auth.IsAuthenticated(IsAuthenticated)&&currentuser!=(''||undefined)){
         return(
             <Redirect to={
                 {
-                    pathname:'/forum'
+                    pathname:Pathname
                     
                 }
             }/>
