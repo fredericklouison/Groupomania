@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Photo from './photo'
-import {fetchUpdateUser,setCurrentUser} from '../../../store/action/userAction'
+import {fetchUpdateUser,setCurrentUser,fetchDeleteUser} from '../../../store/action/userAction'
 import './profil.css'
 
 
-const Profil = ({currentuser,fetchUpdateUser,setCurrentUser}) => {
+const Profil = ({currentuser,fetchUpdateUser,setCurrentUser,fetchDeleteUser}) => {
     const [onModify,setModify]=useState(true)
     const [name,setname]=useState(currentuser.nom)
     const [prenom,setprenom]=useState(currentuser.prenom)
@@ -30,6 +30,9 @@ const Profil = ({currentuser,fetchUpdateUser,setCurrentUser}) => {
         setphoto()
         setModify(true)
     }
+    const handleDelete= ()=>{
+        fetchDeleteUser(currentuser.userId)
+    }
     const handleValid=(e)=>{
         e.preventDefault()
         const body={
@@ -42,8 +45,6 @@ const Profil = ({currentuser,fetchUpdateUser,setCurrentUser}) => {
             body,
             photo
         }
-        console.log( body)
-        console.log(request)
         fetchUpdateUser(request)
         setCurrentUser()
         setphoto()
@@ -60,6 +61,7 @@ const Profil = ({currentuser,fetchUpdateUser,setCurrentUser}) => {
                 <h3 className='profil'>Nom:{currentuser.nom}</h3>
                 <h3 className='profil'>prenom:{currentuser.prenom}</h3>
                 <button className='btn btn-danger' onClick={()=>{setModify(false)}}>Modifier</button>
+                <button id="supp" className='btn btn-danger' onClick={handleDelete}>Supprimer compte</button>
             </div>
         )
     }else{
@@ -100,7 +102,8 @@ const mapStateToProps=({userReducer})=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
         fetchUpdateUser:(body)=>dispatch(fetchUpdateUser(body)),
-        setCurrentUser:()=>{dispatch(setCurrentUser())}
+        setCurrentUser:()=>{dispatch(setCurrentUser())},
+        fetchDeleteUser:(id)=>{dispatch(fetchDeleteUser(id))}
     }
 }
 

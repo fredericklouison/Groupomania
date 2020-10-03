@@ -5,9 +5,10 @@ class Auth {
     sigin=(token)=>{
         localStorage.setItem('token',token)
     }
-    logout=(cb)=>{
+    logout=()=>{
         localStorage.removeItem('token')
-        cb() 
+        window.location.replace("http://localhost:3000/")
+        
         
     }
     currentuserSet=()=>{

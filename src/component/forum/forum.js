@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Header from '../accueil/header'
 import PostDownload from './postdownload'
 import SendPost from './postupload'
-import {fetchgetAllPost,fetchgetLikeOnePost} from '../../store/action/postAction'
+import {fetchgetAllPost} from '../../store/action/postAction'
 
 
 
@@ -14,8 +14,6 @@ const Forum =({fetchgetAllPost,currentuser,post})=>{
     useEffect(()=>{
         
         fetchgetAllPost()
-        console.log(post);
-       console.log(currentuser);
       
     },[])
     

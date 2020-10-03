@@ -19,3 +19,12 @@ h2{
     margin-top: 40px;
     width: 200px;
 }
+@media screen and (max-width:500px){
+    div#LogInForm{
+        width: 100%;
+        height:600px;
+        position:relative
+        
+        
+    }
+}

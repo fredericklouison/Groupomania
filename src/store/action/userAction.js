@@ -37,11 +37,11 @@ export const fetchUserSignup = (body) => {
 			`${APIConfig.API_URI}/User/signup`,
 			{
                 method: 'POST',
-                body:formData
+				body:JSON.stringify(body.body),
+				headers:APIConfig.HEADERS
 			}
 		)
 			.then((response) => {
-				console.log(response.status)
 				if (!response.ok) {
 					throw new Error('Error - 404 Not Found')
 				}
@@ -50,8 +50,6 @@ export const fetchUserSignup = (body) => {
 			})
 			.then((user) => {
 				Auth.sigin(user.token)
-				console.log(user)
-				console.log('hello')
 				dispatch(signupUserSuccess(user))
 				window.location.replace("http://localhost:3000/interface");
 			})
@@ -81,7 +79,6 @@ export const siginUserError = (erreur) => ({
 export const fetchUserSigin = (body) => {
 	return (dispatch) => {
 		dispatch(siginUser())
-		console.log(JSON.stringify(body))
 		return fetch(`${APIConfig.API_URI}/User/sigin`,
 		{
                 method:'POST',
@@ -92,7 +89,7 @@ export const fetchUserSigin = (body) => {
 			})
 			.then((response) => {
 				if (!response.ok) {
-					console.log(response.status)
+				
 					switch (response.status) {
 						case 501:
 							throw new Error('utilisateur introuvable')
@@ -136,7 +133,6 @@ export const updateUserError = (erreur) => ({
 export const fetchUpdateUser = (body) => {
 	return (dispatch) => {
 		dispatch(updateUser())
-		console.log(body)
 		const formData = new FormData();
 		formData.append('user',JSON.stringify(body.body));
 		formData.append('image', body.photo);
@@ -144,7 +140,8 @@ export const fetchUpdateUser = (body) => {
 			`${APIConfig.API_URI}/User/update`,
 			{
                 method: 'PUT',
-                body:formData
+				body:formData,
+				headers:APIConfig.HEADERS_F
 			}
 		)
 			.then((response) => {
@@ -161,6 +158,50 @@ export const fetchUpdateUser = (body) => {
 			})
 			.catch((error) => {
 				dispatch(updateUserError(error))
+			})
+	}
+}
+export const deleteUser = () => ({
+    type:types.DELETE_USER,
+    loading:true
+})
+
+export const deleteUserSuccess = () => ({
+    type:types.DELETE_USER_SUCCESS,
+	loading:false,
+	IsAuthenticated:false
+})
+export const deleteUserError = (erreur) => ({
+    type:types.DELETE_USER_ERROR,
+	loading:false,
+    error:erreur
+})
+export const fetchDeleteUser = (id) => {
+	return (dispatch) => {
+		dispatch(deleteUser())
+		const body=JSON.stringify({id:id})
+		return fetch(
+			`${APIConfig.API_URI}/User/delete/`,
+			{
+				method: 'DELETE',
+				headers:{'Content-Type':'application/json'},
+				body:body
+			}
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error('Error - 404 Not Found')
+				}
+				
+				return response.json()
+			})
+			.then(() => {
+				Auth.logout()
+				dispatch(deleteUserSuccess())
+				
+			})
+			.catch((error) => {
+				dispatch(deleteUserError(error))
 			})
 	}
 }

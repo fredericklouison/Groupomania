@@ -25,17 +25,7 @@ exports.getAllCom=(req,res,next)=>{
     res.status(400).json({error})
    })
 }
-exports.UpdateCom=(req,res,next)=>{
-    const id=req.params.id
-    const text=req.body.text
-    sql.query(`UPDATE commentaire SET text='${text}'WHERE idcom=${id}`)
-    .then((com)=>{
-        res.status(200).json({comment:"commentaire modifier"})
-    })
-    .catch(()=>{
-     res.status(400).json({error})
-    })
- }
+
  exports.Deletecom=(req,res,next)=>{
     const id=req.params.id
    sql.query(`DELETE FROM commentaire WHERE idcom=${id}`)

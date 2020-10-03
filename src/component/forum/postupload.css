@@ -1,6 +1,6 @@
 .button-wrap {
     position: relative;
-    width: 400px;
+    width: 402px;
     text-align: center;
    
   }
@@ -12,9 +12,10 @@
     z-index: 0;
     display: inline-block;
     width: 100%;
-    background: #00bfff;
+    background: #e20c0c;
+    font-weight: bold;
     cursor: pointer;
-    color: #fff;
+    color: rgb(0, 0, 0);
     padding: 10px 0;
     text-transform:uppercase;
     font-size:12px;
@@ -35,7 +36,7 @@ div#Sendpost{
     width: 406px;
     border-radius: 10px;
     margin: auto;
-    border: 3px solid purple;
+    border: 2px solid red;
     overflow: hidden;
 }
 #postPreview {
@@ -47,4 +48,20 @@ div#Sendpost{
 #postPreview img#imgPrev{
     max-height:400px;
     max-width:350px;
+}
+@media screen and (max-width:500px){
+    .button-wrap {
+        width: 302px;
+       
+    }
+    #inputpost{
+        width:300px;
+    }
+    div#Sendpost{
+        width: 303px;
+    }
+    #postPreview img#imgPrev{
+        max-height:200px;
+        max-width:150px;
+    }
 }

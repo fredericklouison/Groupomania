@@ -68,41 +68,7 @@ export const postReducer=(state=InitialStatepost,action)=>{
                     ...state,
                     loading:action.loading,
                     error:action.error
-                }  
-        case LIKE_ONE_POST:
-                return{
-                    ...state,
-                    loading:action.loading
-                    }
-        case LIKE_ONE_POST_SUCCESS:
-                return{
-                    ...state,
-                    loading:action.loading,
-                    like:action.like
-                    }
-        case LIKE_ONE_POST_ERROR:
-                return{
-                    ...state,
-                    loading:action.loading,
-                    error:action.error
-                    }         
-        case DISLIKE_ONE_POST:
-                return{
-                    ...state,
-                    loading:action.loading
-                    }
-        case DISLIKE_ONE_POST_SUCCESS:
-                return{
-                    ...state,
-                    loading:action.loading,
-                    dislike:action.dislike
-                    }
-        case DISLIKE_ONE_POST_ERROR:
-                return{
-                    ...state,
-                    loading:action.loading,
-                    error:action.error
-                    }                               
+                }    
         default:
             return state
     }

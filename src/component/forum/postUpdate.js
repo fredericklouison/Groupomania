@@ -39,8 +39,6 @@ const UpdatePost = ({fetchupdateOnePost,currentuser,photo,title,setUdate,idPost}
             }
         }
         
-        console.log(request)
-        console.log(idPost)
         fetchupdateOnePost(request,idPost)
 
     }

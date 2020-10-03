@@ -5,8 +5,8 @@ import UpdatePost from './postUpdate'
 import {fetchdeleteOnePost,fetchgetdislikeOnePost,fetchgetLikeOnePost} from '../../store/action/postAction'
 import * as APIConfig  from '../../store/constant/ApiConfig'
 import Comment from './comment'
-const PostDownload = ({fetchgetdislikeOnePost,fetchgetLikeOnePost,fetchdeleteOnePost,photo_user,pseudo,titre,photo,usersid,currentuser,idPost}) => {
-  const IsUser=currentuser.userId==usersid
+const PostDownload = ({fetchdeleteOnePost,photo_user,pseudo,titre,photo,usersid,currentuser,idPost}) => {
+  const IsUser=(currentuser.userId==usersid)||currentuser.isAdmin
  
   const [update,setupdate]=useState(true)
   const [like,setuplike]=useState()
@@ -145,8 +145,6 @@ const mapStateToProps=({userReducer,postReducer})=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
       fetchdeleteOnePost:(idPost)=>dispatch(fetchdeleteOnePost(idPost))
-     
-        
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(PostDownload)

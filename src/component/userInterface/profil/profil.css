@@ -1,5 +1,6 @@
 .profil{
     text-align: center;
+    margin-top: 40px;
 }
 form{
     width: 200px;
@@ -56,4 +57,8 @@ label{
       left: 0;
       opacity: 0;
       cursor: pointer;
+  }
+  .btn-danger{
+      margin-left: 30px;
+      margin-top: 50px;
   }

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import * as APIConfig  from '../../store/constant/ApiConfig'
-const Onecom = ({id,rende}) => {
+import './onecom.css'
+const Onecom = ({id,rende,currentuser}) => {
     const[com,setcom]=useState([])
     const[rend,setrend]=useState(0)
-   
+    
     const handleClick=(comid)=>{
         fetch(`${APIConfig.API_URI}/comment/${comid}`,
         {method: 'DELETE'})
@@ -39,11 +41,10 @@ const Onecom = ({id,rende}) => {
                 
         })
     },[rend,rende])
-    console.log(com)
     const postList=Object.keys(com)
 .map(key=>{
  
-return<div key={key} className='com'><p>{com[key].pseudo} : {com[key].Text}</p><div id='del'><i className="fas fa-trash-alt" onClick={()=>handleClick(com[key].idcom)}></i></div></div>
+return<div key={key} className='com'><p>{com[key].pseudo} : {com[key].Text}</p><div id='del'>{(com[key].userid==currentuser.userId)||currentuser.isAdmin?<i className="fas fa-trash-alt" onClick={()=>handleClick(com[key].idcom)}></i>:null}</div></div>
 })
     return (
         <div id='content'>
@@ -52,5 +53,10 @@ return<div key={key} className='com'><p>{com[key].pseudo} : {com[key].Text}</p><
         </div>
     )
 }
-
-export default Onecom
+const mapStateToProps=({userReducer})=>{
+    return{
+       currentuser:userReducer.currentuser
+       
+    }
+  }
+export default connect(mapStateToProps)( Onecom)

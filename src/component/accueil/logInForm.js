@@ -12,7 +12,8 @@ const LogInForm = ({fetchUserSignup,setCurrentUser,textclick,loading,user}) => {
     const [pseudo, setpseudo] = useState('')
     const history = useHistory();
     
-    const emailChange=e=>{setemail(e.target.value)
+    const emailChange=e=>{
+        setemail(e.target.value)
       }
     const passwordChange=e=>{setpassword(e.target.value)
        
@@ -40,8 +41,6 @@ const LogInForm = ({fetchUserSignup,setCurrentUser,textclick,loading,user}) => {
             body
            
         }
-        console.log( body)
-        console.log(request)
         fetchUserSignup(request)
         setCurrentUser()
         setemail("")

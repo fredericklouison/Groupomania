@@ -45,7 +45,7 @@ const Comment = ({post,user,pseudo}) => {
         <div id='comment'>
             <Onecom id={post} rende={rende} />
             <div id='inputpost' className="input-group mb-3">
-                <input type="text" value={text}onChange={handleChange} className="form-control" placeholder="Titre" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                <input type="text" value={text} onChange={handleChange} className="form-control" placeholder="Titre" aria-label="Recipient's username" aria-describedby="button-addon2"/>
                 <div className="input-group-append">
                     <button className="btn btn-outline-success" onClick={handleClick}type="button" id="button-addon2">Valider</button>
                 </div>

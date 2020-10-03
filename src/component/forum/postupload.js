@@ -28,7 +28,6 @@ const SendPost = ({fetchCreatePost,currentuser}) => {
             body,
             photo:gif
         }
-        console.log(request)
         fetchCreatePost(request)
 
     }

@@ -4,3 +4,11 @@ img#fond{
     display: block;
     position: absolute;
 }
+@media screen and (max-width:500px){
+    img#fond{
+        max-width: 100%;
+        height: auto;
+        display: block;
+        position:relative;
+    }
+}
